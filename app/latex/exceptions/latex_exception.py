@@ -1,0 +1,4 @@
+
+
+class LatexEngineException(Exception):
+    pass

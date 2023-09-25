@@ -1,0 +1,82 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Minimal Memorandum
+% LaTeX Template
+% Version 1.0 (March 3, 2022)
+%
+% This template originates from:
+% https://www.LaTeXTemplates.com
+%
+% Author:
+% Vel (vel@latextemplates.com)
+%
+% License:
+% CC BY-NC-SA 4.0 (https://creativecommons.org/licenses/by-nc-sa/4.0/)
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass[
+	a4paper, % Paper size, use 'a4paper' for A4 (default) or 'letterpaper' for US letter (you may want to adjust margins afterwards)
+	10pt, % Default font size, this can be 10pt, 11pt or 12pt
+]{CSMinimalMemo}
+
+%----------------------------------------------------------------------------------------
+%	MEMO INFORMATION
+%----------------------------------------------------------------------------------------
+
+\memotitle{{{title}}} % The main document title at the top. Alternative values may be Announcement, Notice or just Memo. Will be made uppercase.
+
+\memodate{February 24, 2023} % The document date, may be left empty if not required (i.e. \memodate{})
+
+\memoinfotable{ % Table of main memo information
+	% Each memo information line should be in the format: \memoinfotablerow{<heading>}{<value>} where either can be empty
+	\memoinfotablerow{To:}{All Middle Managers}
+	\memoinfotablerow{From:}{Bill Lumbergh}
+	\memoinfotablerow{}{Vice President}
+	\memoinfotablerow{Subject:}{TPS Reports Reminder}
+}
+
+\leftcontactinfo{ % Left contact information block in the footer, leave this command empty (i.e. \leftcontactinfo{}) if not required
+	\textbf{\textit{Initech Inc.}}\\ % Company/individual name
+	4120 Freidrich Ln\\
+	Austin, TX 78744\\
+	USA\\
+}
+
+\centercontactinfo{ % Center contact information block in the footer, leave this command empty (i.e. \centercontactinfo{}) if not required
+	\textbf{\textit{Contact}}\\
+	Nina Armstrong\\
+	Personal Assistant\\
+	Extension 4637\\
+}
+
+\rightcontactinfo{} % Right contact information block in the footer, leave this command empty (i.e. \rightcontactinfo{}) if not required
+
+%---------------------------------------------------------------------------------
+
+\begin{document}
+
+\outputheader % Output the memo header including the memo title, date and memo information, all automatically populated from the content entered in the MEMO INFORMATION block above
+
+%---------------------------------------------------------------------------------
+%	MEMO CONTENT
+%---------------------------------------------------------------------------------
+
+{{first_line}}
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent porttitor arcu luctus, imperdiet urna iaculis, mattis eros. Pellentesque iaculis odio vel nisl ullamcorper, nec faucibus ipsum molestie. Sed dictum nisl non aliquet porttitor. Etiam vulputate arcu dignissim, finibus sem et, viverra nisl. Aenean luctus congue massa, ut laoreet metus ornare in. Nunc fermentum nisi imperdiet lectus tincidunt vestibulum at ac elit. Nulla mattis nisl eu malesuada suscipit.
+
+Aliquam arcu turpis, ultrices sed luctus ac, vehicula id metus. Morbi eu feugiat velit, et tempus augue. Proin ac mattis tortor. Donec tincidunt, ante rhoncus luctus semper, arcu lorem lobortis justo, nec convallis ante quam quis lectus. Aenean tincidunt sodales massa, et hendrerit tellus mattis ac. Sed non pretium nibh. Donec cursus maximus luctus. Vivamus lobortis eros et massa porta porttitor.
+
+Fusce varius orci ac magna dapibus porttitor. In tempor leo a neque bibendum sollicitudin. Nulla pretium fermentum nisi, eget sodales magna facilisis eu. Praesent aliquet nulla ut bibendum lacinia. Donec vel mauris vulputate, commodo ligula ut, egestas orci. Suspendisse commodo odio sed hendrerit lobortis. Donec finibus eros erat, vel ornare enim mattis et. Donec finibus dolor quis dolor tempus consequat. Mauris fringilla dui id libero egestas, ut mattis neque ornare. Ut condimentum urna pharetra ipsum consequat, eu interdum elit cursus. Vivamus scelerisque tortor et nunc ultricies, id tincidunt libero pharetra. Aliquam eu imperdiet leo. Morbi a massa volutpat velit condimentum convallis et facilisis dolor.
+
+In hac habitasse platea dictumst. Curabitur mattis elit sit amet justo luctus vestibulum. In hac habitasse platea dictumst. Pellentesque lobortis justo enim, a condimentum massa tempor eu. Ut quis nulla a quam pretium eleifend nec eu nisl. Nam cursus porttitor eros, sed luctus ligula convallis quis. Nam convallis, ligula in auctor euismod, ligula mauris fringilla tellus, et egestas mauris odio eget diam. Praesent sodales in ipsum eu dictum.
+
+Maecenas consectetur metus at tellus finibus condimentum. Proin arcu lectus, ultrices non tincidunt et, tincidunt ut quam. Integer luctus posuere est, non maximus ante dignissim quis. Nunc a cursus erat. Curabitur suscipit nibh in tincidunt sagittis. Nam malesuada vestibulum quam id gravida. Proin ut dapibus velit. Vestibulum eget quam quis ipsum semper convallis. Duis consectetur nibh ac diam dignissim, id condimentum enim dictum. Nam aliquet ligula eu magna pellentesque, nec sagittis leo lobortis. Aenean tincidunt dignissim egestas. Morbi efficitur risus ante, id tincidunt odio pulvinar vitae.
+
+%---------------------------------------------------------------------------------
+
+\end{document}

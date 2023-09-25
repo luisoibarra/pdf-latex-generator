@@ -1,0 +1,7 @@
+# Latex templates
+app/latex/templates/*
+# Templates to commit
+!app/latex/templates/LaTeXTemplates_minimal-memo_v1.0
+
+# Python related
+__pycache__
