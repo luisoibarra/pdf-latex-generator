@@ -1,0 +1,3 @@
+
+class WordEngineException(Exception):
+    pass

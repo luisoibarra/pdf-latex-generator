@@ -20,3 +20,25 @@ class LatexConfig:
     # Command to compile a latex template
     COMMAND_COMPILE_LATEX = ["pdflatex"]
 
+class WordConfig:
+    # Default directory target to copy a generated template with the variables updated 
+    TEMP_TEMPLATE_DIR = (Path(__file__).parent / "temp").resolve()
+ 
+    TEMPLATE_DIR = (Path(__file__).parent / "templates").resolve()
+
+    # Command to compile a docx template first part
+    COMMAND_CONVERT_DOC_PDF_PART_1 = [
+        "libreoffice", 
+        "--headless", 
+        "--convert-to", 
+        "pdf", 
+        # Doc to convert path goes here when building the command
+    ]
+
+    # Command to compile a docx template second part after the document
+    COMMAND_CONVERT_DOC_PDF_PART_2 = [
+        "--outdir",
+    ]
+
+    # Valid template suffixes for Word templates
+    VALID_WORD_TEMPLATE_SUFFIX = [".docx"]
