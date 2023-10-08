@@ -1,4 +1,4 @@
-from typing import Any, Dict
+from typing import Any
 from app.latex.config import LatexConfig, WordConfig
 from app.latex.exceptions.latex_exception import LatexEngineException
 from app.latex.exceptions.word_exception import WordEngineException
@@ -7,11 +7,11 @@ from app.latex.models.latex_template_info import LatexTemplateInfo
 import random
 from pathlib import Path
 import shutil
-from abc import ABC, abstractmethod
 from docxtpl import DocxTemplate
+import jinja2
 
 
-class TemplateEngine(ABC):
+class LatexTemplateEngine:
     def add_variable_values_to_template(self, template: LatexTemplateInfo, **variables: Any) -> LatexTemplateInfo:
         """
         Read the template and creates a new template with all the variables added. All values for variables will be
@@ -40,31 +40,14 @@ class TemplateEngine(ABC):
         template_content_path = Path(
             new_temp_template_path, LatexConfig.DEFAULT_TEMPLATE_TEX_FILENAME)
         template_content = template_content_path.read_text()
+
         # Update template variables
-        for var in variables:
-            template_content = self._add_variable_to_template(
-                var, str(variables[var]), template_content)
+        environment = jinja2.Environment()
+        jinja_template = environment.from_string(template_content)
+        template_content = jinja_template.render(variables)
+
         template_content_path.write_text(template_content)
-
         return new_template_info
-
-    @abstractmethod
-    def _add_variable_to_template(self, variable: str, value: str, template_content: str) -> str:
-        """
-        Replace the variable with its value in the template.
-
-        variable: Variable name to be replaced
-        value: Variable value
-        template_content: Current value of the template content
-
-        return: The template with the replaced variable content
-        """
-        ...
-
-
-class RegexTemplateEngine(TemplateEngine):
-    def _add_variable_to_template(self, variable: str, value: str, template_content: str) -> str:
-        return template_content.replace(LatexConfig.VARIABLE_NAME_PREFIX + variable + LatexConfig.VARIABLE_NAME_SUFFIX, value)
 
 class WordTemplateEngine:
 

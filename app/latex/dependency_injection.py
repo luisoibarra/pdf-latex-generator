@@ -8,7 +8,7 @@ from .engine.compile_engine import LatexCompiler, WordCompiler
 from .models.compile_variable_info import CompileVariableInfo
 from .models.latex_template_info import LatexTemplateInfo
 from .models.word_template_info import WordTemplateInfo
-from .engine.template_engine import RegexTemplateEngine, WordTemplateEngine
+from .engine.template_engine import LatexTemplateEngine, WordTemplateEngine
 
 class LatexTemplateInfoRepository:
     def __init__(self) -> None:
@@ -51,7 +51,7 @@ async def get_latex_template(info: LatexTemplateInfo, variables: list[CompileVar
     """
     Returns the template bytes for the latex compiled pdf usign given variables.
     """
-    engine = RegexTemplateEngine()
+    engine = LatexTemplateEngine()
     compiler = LatexCompiler()
 
     temp_template = None
