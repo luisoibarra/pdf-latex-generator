@@ -1,12 +1,14 @@
-pdf-latex-generator
+# Misc
+pdf-latex-generator/
 TODO.md
+documentation/
 
 # Latex templates
 app/latex/temp/*
 app/latex/templates/*
 # Templates to commit
 !app/latex/templates/LaTeXTemplates_minimal-memo_v1.0
-!app/latex/templates/TestWordTemplate.docx
+!app/latex/templates/TestWordTemplate
 
 # Python related
 __pycache__

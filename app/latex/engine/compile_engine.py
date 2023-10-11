@@ -63,11 +63,11 @@ class WordCompiler:
         value = await asyncio.create_subprocess_shell(
             # cd TEMPLATE_PATH && pdflatex template.tex
             " && ".join([
-                f"cd {Path(template.template_path).parent.resolve()}",
+                f"cd {Path(template.template_path).resolve()}",
                 " ".join(WordConfig.COMMAND_CONVERT_DOC_PDF_PART_1 + 
-                         [template.template_path] + 
+                         [str(Path(template.template_path, WordConfig.DEFAULT_TEMPLATE_WORD_FILENAME).resolve())] + 
                          WordConfig.COMMAND_CONVERT_DOC_PDF_PART_2 + 
-                         [str(Path(template.template_path).parent.resolve())]),
+                         [str(Path(template.template_path).resolve())]),
             ]),
             stdout=asyncio.subprocess.PIPE,
             stderr=asyncio.subprocess.PIPE,
@@ -82,5 +82,5 @@ class WordCompiler:
         if value.returncode != 0:
             raise WordEngineException(
                 f"Word compilation failed with code {value.returncode}")
-        temp_path = Path(template.template_path)
-        return str(Path(temp_path.parent, temp_path.stem + ".pdf").resolve())
+        temp_path = Path(template.template_path, WordConfig.DEFAULT_TEMPLATE_PDF_FILENAME)
+        return str(temp_path.resolve())

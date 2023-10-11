@@ -33,8 +33,8 @@ class WordTemplateInfoRepository:
         self.path = Path(WordConfig.TEMPLATE_DIR)
     
     def get_all_templates(self) -> list[WordTemplateInfo]:
-        return [WordTemplateInfo(template_name=x.stem, template_path=str(x)) 
-                for x in self.path.iterdir() if x.is_file() and x.suffix in WordConfig.VALID_WORD_TEMPLATE_SUFFIX]
+        return [WordTemplateInfo(template_name=x.name, template_path=str(x)) 
+                for x in self.path.iterdir() if x.is_dir()]
 
     def get_template_info_by_name(self, template_name: str) -> Optional[WordTemplateInfo]:
         templates = [x for x in self.get_all_templates() if x.template_name == template_name]
@@ -56,9 +56,7 @@ async def get_latex_template(info: LatexTemplateInfo, variables: list[CompileVar
 
     temp_template = None
     try:
-        temp_template = engine.add_variable_values_to_template(info, **{
-            x.name: x.value for x in variables 
-        })
+        temp_template = engine.add_variable_values_to_template(info, variables)
         pdf_path = await compiler.compile(temp_template)
         pdf_path = Path(pdf_path)
         return pdf_path.read_bytes()
@@ -80,9 +78,7 @@ async def get_word_template(info: WordTemplateInfo, variables: list[CompileVaria
 
     temp_template = None
     try:
-        temp_template = engine.add_variable_values_to_template(info, **{
-            x.name: x.value for x in variables 
-        })
+        temp_template = engine.add_variable_values_to_template(info, variables)
         pdf_path = await compiler.compile(temp_template)
         pdf_path = Path(pdf_path)
         return pdf_path.read_bytes()
@@ -90,9 +86,7 @@ async def get_word_template(info: WordTemplateInfo, variables: list[CompileVaria
         if temp_template is None:
             raise Exception(f"Failed to add variables values to template {info.template_name}")
         try:
-            temp_path = Path(temp_template.template_path)
-            Path(temp_path).unlink() # Template file
-            Path(temp_path.parent, temp_path.stem + ".pdf").unlink() # Pdf file
+            shutil.rmtree(temp_template.template_path)
         except Exception as e:
             logging.error(f"Unable to delete temporary template path {temp_template.template_path} because: " + str(e))
             raise

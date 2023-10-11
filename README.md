@@ -24,12 +24,66 @@ Build the docker image and start the dev container in VSCode then press F5 to st
 
 To see swagger documentation go to `http://localhost:8000/docs` once the container is started.
 
+### Example requests
+
+- Word tempalte example
+```json
+// POST http://localhost:8000/api/v1/word
+
+{
+	"template_name": "TestWordTemplate",
+	"template_variables": [
+		{
+			"name": "title",
+			"value": "Insomnia Call Title"
+		},
+		{
+			"name": "body",
+			"value": "First Line From Insomnia"
+		},
+		{
+			"name": "test_image",
+			"type": "image",
+			"value": "base 64 png image"
+		}
+	]
+}
+```
+
+- Latex tempalte example
+```json
+// POST http://localhost:8000/api/v1/latex
+
+{
+	"template_name": "LaTeXTemplates_minimal-memo_v1.0",
+	"template_variables": [
+		{
+			"name": "title",
+			"value": "Insomnia Call Title"
+		},
+		{
+			"name": "first_line",
+			"value": "First Line From Insomnia"
+		},
+		{
+			"name": "test_image",
+			"type": "image",
+			"value": "base 64 png image"
+		}
+	]
+}
+```
+
 ## PDF Template
 
 The service supports two kinds of templates:
 
 - Latex templates: Folder with all the files needed to compile latex to pdf.
-- Word templates: A docx file containing template markup language.
+- Word templates: Folder containing a template docx file with markup language.
+
+### General requirements
+
+- Images must be PNG encoded in base64.
 
 ### Latex template requirements
 
