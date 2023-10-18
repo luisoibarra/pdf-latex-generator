@@ -1,11 +1,12 @@
-from typing import Any
+from typing import Any, Optional, Union
 
 from typing_extensions import Annotated
-from pydantic import BaseModel, ValidationError
-from pydantic.functional_validators import AfterValidator
+from pydantic import BaseModel, ValidationError, Field
+from pydantic.functional_validators import AfterValidator, model_validator
 
-IMAGE_VARIABLE_TYPE = "image"
 JSON_VARIABLE_TYPE = "json"
+IMAGE_VARIABLE_TYPE = "image"
+DATA_VARIABLE_TYPE = "data"
 
 # Order matters
 VARIABLE_TYPES = [
@@ -13,6 +14,8 @@ VARIABLE_TYPES = [
     JSON_VARIABLE_TYPE,
     # Indicates that the variable is an image. The value of the variable is the base64 encoded image.
     IMAGE_VARIABLE_TYPE,
+    # Indicates that the variable is data. This data should be handled according the information provided.
+    DATA_VARIABLE_TYPE,
 ]
 
 def check_compile_variable_value(val: str) -> str:
@@ -21,7 +24,44 @@ def check_compile_variable_value(val: str) -> str:
 
 CompileVariableType = Annotated[str, AfterValidator(check_compile_variable_value)]
 
+class ImageVariableInfo(BaseModel):
+    """
+    Image information. Will come as value property when type is image.
+    """
+    base64_image: str
+    width: Optional[float]
+    height: Optional[float]
+
+class DataVariableInfo(BaseModel):
+    """
+    Data information. Will come as value property when type is data.
+    """
+    data: list[float]
+    title: Optional[str]
+    x_label: Optional[str]
+    y_label: Optional[str]
+
 class CompileVariableInfo(BaseModel):
+    """
+    Variable information
+    """
     name: str
-    type: CompileVariableType = VARIABLE_TYPES[0] # Defaults to json 
-    value: Any
+    type: CompileVariableType = JSON_VARIABLE_TYPE
+
+    # This filed will always match with Any, then in model_validator will be enforced the value type 
+    # according the type parameter. Union is here for type purposes only.
+    value: Union[Any, ImageVariableInfo, DataVariableInfo] = Field(..., union_mode='left_to_right')
+
+    @model_validator(mode='after')
+    def check_passwords_match(self) -> 'CompileVariableInfo':
+        if self.type == IMAGE_VARIABLE_TYPE:
+            if isinstance(self.value, dict):
+                self.value = ImageVariableInfo(**self.value)
+            else:
+                raise ValidationError(f"When CompileVariableInfo.type='{IMAGE_VARIABLE_TYPE}', CompileVariableInfo.value must be a valid dictionary.")
+        if self.type == DATA_VARIABLE_TYPE:
+            if isinstance(self.value, dict):
+                self.value = DataVariableInfo(**self.value)
+            else:
+                raise ValidationError(f"When CompileVariableInfo.type='{DATA_VARIABLE_TYPE}', CompileVariableInfo.value must be a valid dictionary.")
+        return self

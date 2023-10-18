@@ -44,7 +44,11 @@ To see swagger documentation go to `http://localhost:8000/docs` once the contain
 		{
 			"name": "test_image",
 			"type": "image",
-			"value": "base 64 png image"
+			"value": {
+				"base64_image": "base 64 png image",
+				"width": 100,
+				"height": 100
+			}
 		}
 	]
 }
@@ -68,7 +72,11 @@ To see swagger documentation go to `http://localhost:8000/docs` once the contain
 		{
 			"name": "test_image",
 			"type": "image",
-			"value": "base 64 png image"
+			"value": {
+				"base64_image": "base 64 png image",
+				"width": 100,
+				"height": 100
+			}
 		}
 	]
 }
@@ -84,6 +92,7 @@ The service supports two kinds of templates:
 ### General requirements
 
 - Images must be PNG encoded in base64.
+- Image sizes will be in millimeters.
 
 ### Latex template requirements
 

@@ -1,6 +1,6 @@
 from pydantic import BaseModel
 
-class LatexTemplateInfo(BaseModel):
+class TemplateInfo(BaseModel):
     template_name: str
     """
     Template name: is the folder name of the latex project.

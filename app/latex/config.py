@@ -28,7 +28,7 @@ class WordConfig:
     DEFAULT_TEMPLATE_WORD_FILENAME = "template.docx"
     
     # Default file name when compiling to pdf. Must be the same as DEFAULT_TEMPLATE_WORD_FILENAME but with .pdf
-    DEFAULT_TEMPLATE_PDF_FILENAME = "template.docx"
+    DEFAULT_TEMPLATE_PDF_FILENAME = "template.pdf"
 
     # Command to compile a docx template first part
     COMMAND_CONVERT_DOC_PDF_PART_1 = [

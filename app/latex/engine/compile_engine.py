@@ -1,8 +1,7 @@
 from app.latex.config import LatexConfig, WordConfig
 from app.latex.exceptions.latex_exception import LatexEngineException
 from app.latex.exceptions.word_exception import WordEngineException
-from app.latex.models.word_template_info import WordTemplateInfo
-from app.latex.models.latex_template_info import LatexTemplateInfo
+from app.latex.models.template_info import TemplateInfo
 from pathlib import Path
 import asyncio
 import logging
@@ -10,12 +9,12 @@ import logging
 
 class LatexCompiler:
 
-    async def compile(self, template: LatexTemplateInfo) -> str:
+    async def compile(self, template: TemplateInfo) -> str:
         """
         Compiles a latex template.
 
         Args:
-            template: A LatexTemplateInfo object representing the template to compile.
+            template: A TemplateInfo object representing the template to compile.
 
         Raises:
             LatexEngineException: If the latex compilation fails with a non-zero exit code.
@@ -47,12 +46,12 @@ class LatexCompiler:
 
 class WordCompiler:
 
-    async def compile(self, template: WordTemplateInfo) -> str:
+    async def compile(self, template: TemplateInfo) -> str:
         """
         Compiles a word template.
 
         Args:
-            template: A DocxTemplateInfo object representing the template to compile.
+            template: A TemplateInfo object representing the template to compile.
 
         Raises:
             WordEngineException: If the word compilation fails with a non-zero exit code.

@@ -4,7 +4,7 @@ import base64
 from app.latex.dependency_injection import LatexEngineService, LatexTemplateInfoRepository
 from app.latex.dto.compile_template_request_dto import CompileTemplateRequestDto
 from app.latex.dto.compile_template_response_dto import CompileTemplateResponseDto
-from app.latex.models.latex_template_info import LatexTemplateInfo
+from app.latex.models.template_info import TemplateInfo
 
 router = APIRouter()
 
@@ -24,11 +24,11 @@ async def compile_latex_templates(
     return CompileTemplateResponseDto(base64_encoded_pdf=base64.b64encode(pdf_bytes))
 
 @router.get("/templates")
-def get_templates_info(template_repo: LatexTemplateInfoRepository = Depends(LatexTemplateInfoRepository)) -> list[LatexTemplateInfo]:
+def get_templates_info(template_repo: LatexTemplateInfoRepository = Depends(LatexTemplateInfoRepository)) -> list[TemplateInfo]:
     return template_repo.get_all_templates()
 
 @router.get("/template/{name}")
-def get_templates_info_by_name(name: str, template_repo: LatexTemplateInfoRepository = Depends(LatexTemplateInfoRepository)) -> LatexTemplateInfo:
+def get_templates_info_by_name(name: str, template_repo: LatexTemplateInfoRepository = Depends(LatexTemplateInfoRepository)) -> TemplateInfo:
     template = template_repo.get_template_info_by_name(name)
     if not template:
         raise HTTPException(404, detail=f"Template with name {name} wasn't found.")

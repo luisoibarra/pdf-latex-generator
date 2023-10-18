@@ -3,13 +3,12 @@ from pathlib import Path
 from app.latex.models.compile_variable_info import CompileVariableInfo
 
 from .dependency_injection import LatexEngineService, WordEngineService
-from .models.word_template_info import WordTemplateInfo
-from .models.latex_template_info import LatexTemplateInfo
+from .models.template_info import TemplateInfo
 
 async def test_latex_flow():
     engine = LatexEngineService()
     await engine.get_compiled_pdf_bytes(
-        LatexTemplateInfo(
+        TemplateInfo(
                 template_name="LaTeXTemplates_minimal-memo_v1.0",
                 template_path=str(Path(__file__, "..", "templates",
                                 "LaTeXTemplates_minimal-memo_v1.0").resolve()),
@@ -21,7 +20,7 @@ async def test_latex_flow():
 async def test_word_flow():
     engine = WordEngineService()
     await engine.get_compiled_pdf_bytes(
-        WordTemplateInfo(
+        TemplateInfo(
                 template_name="TestWordTemplate",
                 template_path=str(Path(__file__, "..", "templates",
                                 "TestWordTemplate.docx").resolve()),
