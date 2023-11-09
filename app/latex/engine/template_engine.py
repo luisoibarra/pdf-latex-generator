@@ -1,11 +1,11 @@
 from io import BytesIO
 from typing import Any, Optional
-from app.latex.config import LatexConfig, WordConfig
-from app.latex.engine.model.inline_latex_image import InlineLatexImage
-from app.latex.exceptions.latex_exception import LatexEngineException
-from app.latex.exceptions.word_exception import WordEngineException
-from app.latex.models.compile_variable_info import DATA_VARIABLE_TYPE, IMAGE_VARIABLE_TYPE, JSON_VARIABLE_TYPE, CompileVariableInfo, DataVariableInfo, ImageVariableInfo
-from app.latex.models.template_info import TemplateInfo
+from latex.config import LatexConfig, WordConfig
+from latex.engine.model.inline_latex_image import InlineLatexImage
+from latex.exceptions.latex_exception import LatexEngineException
+from latex.exceptions.word_exception import WordEngineException
+from latex.models.compile_variable_info import DATA_VARIABLE_TYPE, IMAGE_VARIABLE_TYPE, JSON_VARIABLE_TYPE, CompileVariableInfo, DataVariableInfo, ImageVariableInfo
+from latex.models.template_info import TemplateInfo
 import random
 import base64
 from pathlib import Path

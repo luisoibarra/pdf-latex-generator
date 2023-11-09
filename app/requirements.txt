@@ -1,0 +1,5 @@
+uvicorn[standard]
+fastapi
+Jinja2
+matplotlib
+docxtpl

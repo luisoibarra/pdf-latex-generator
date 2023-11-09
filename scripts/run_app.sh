@@ -1,1 +1,1 @@
-cd ../ && uvicorn app.main:app
+cd ../app && uvicorn main:app

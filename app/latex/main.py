@@ -1,6 +1,6 @@
 from pathlib import Path
 
-from app.latex.models.compile_variable_info import CompileVariableInfo
+from latex.models.compile_variable_info import CompileVariableInfo
 
 from .dependency_injection import LatexEngineService, WordEngineService
 from .models.template_info import TemplateInfo

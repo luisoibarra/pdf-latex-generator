@@ -1,5 +1,5 @@
 
-from app.latex.models.compile_variable_info import ImageVariableInfo
+from latex.models.compile_variable_info import ImageVariableInfo
 
 
 class InlineLatexImage():

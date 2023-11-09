@@ -1,7 +1,7 @@
-from app.latex.config import LatexConfig, WordConfig
-from app.latex.exceptions.latex_exception import LatexEngineException
-from app.latex.exceptions.word_exception import WordEngineException
-from app.latex.models.template_info import TemplateInfo
+from latex.config import LatexConfig, WordConfig
+from latex.exceptions.latex_exception import LatexEngineException
+from latex.exceptions.word_exception import WordEngineException
+from latex.models.template_info import TemplateInfo
 from pathlib import Path
 import asyncio
 import logging

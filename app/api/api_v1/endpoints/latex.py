@@ -1,10 +1,10 @@
 from fastapi import APIRouter, Depends, HTTPException
 import base64
 
-from app.latex.dependency_injection import LatexEngineService, LatexTemplateInfoRepository
-from app.latex.dto.compile_template_request_dto import CompileTemplateRequestDto
-from app.latex.dto.compile_template_response_dto import CompileTemplateResponseDto
-from app.latex.models.template_info import TemplateInfo
+from latex.dependency_injection import LatexEngineService, LatexTemplateInfoRepository
+from latex.dto.compile_template_request_dto import CompileTemplateRequestDto
+from latex.dto.compile_template_response_dto import CompileTemplateResponseDto
+from latex.models.template_info import TemplateInfo
 
 router = APIRouter()
 

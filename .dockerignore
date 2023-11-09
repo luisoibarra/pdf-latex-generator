@@ -1,7 +1,9 @@
 # Latex templates
 app/latex/templates/*
+app/latex/temp/*
 # Templates to commit
 !app/latex/templates/LaTeXTemplates_minimal-memo_v1.0
+!app/latex/templates/TestWordTemplate
 
 # Python related
 __pycache__

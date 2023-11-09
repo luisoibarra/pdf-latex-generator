@@ -14,7 +14,7 @@ Create an instance of the service by choosing one of these options.
 
 Build the docker image and start the container with this command:
 
-`docker run -it --rm -p 8000:8000 pdf-latex-generator:1.0`
+`docker run -it --rm -p 8000:8000 pdf-generator:1.0`
 
 **Dev container (mostly for development):**
 

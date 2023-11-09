@@ -1,1 +1,1 @@
-cd ../ && docker build -t pdf-latex-generator:1.0 .
+cd ../ && docker build -t pdf-generator:1.0 .
