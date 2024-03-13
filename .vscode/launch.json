@@ -6,11 +6,12 @@
     "configurations": [
         {
             "name": "Python: FastAPI",
-            "type": "python",
+            "cwd": "${workspaceFolder}/app",
+            "type": "debugpy",
             "request": "launch",
             "module": "uvicorn",
             "args": [
-                "app.main:app",
+                "main:app",
                 "--reload"
             ],
             "jinja": true,

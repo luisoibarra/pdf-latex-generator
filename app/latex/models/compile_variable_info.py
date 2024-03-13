@@ -57,11 +57,15 @@ class CompileVariableInfo(BaseModel):
         if self.type == IMAGE_VARIABLE_TYPE:
             if isinstance(self.value, dict):
                 self.value = ImageVariableInfo(**self.value)
+            elif isinstance(self.value, ImageVariableInfo):
+                pass
             else:
                 raise ValidationError(f"When CompileVariableInfo.type='{IMAGE_VARIABLE_TYPE}', CompileVariableInfo.value must be a valid dictionary.")
         if self.type == DATA_VARIABLE_TYPE:
             if isinstance(self.value, dict):
                 self.value = DataVariableInfo(**self.value)
+            elif isinstance(self.value, DataVariableInfo):
+                pass
             else:
                 raise ValidationError(f"When CompileVariableInfo.type='{DATA_VARIABLE_TYPE}', CompileVariableInfo.value must be a valid dictionary.")
         return self

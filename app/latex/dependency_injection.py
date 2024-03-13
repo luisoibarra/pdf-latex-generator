@@ -59,6 +59,9 @@ async def get_latex_template(info: TemplateInfo, variables: list[CompileVariable
         pdf_path = await compiler.compile(temp_template)
         pdf_path = Path(pdf_path)
         return pdf_path.read_bytes()
+    except Exception as e:
+        logging.error(e)
+        raise e
     finally:
         if temp_template is None:
             raise Exception(f"Failed to add variables values to template {info.template_name}")
@@ -81,6 +84,9 @@ async def get_word_template(info: TemplateInfo, variables: list[CompileVariableI
         pdf_path = await compiler.compile(temp_template)
         pdf_path = Path(pdf_path)
         return pdf_path.read_bytes()
+    except Exception as e:
+        logging.error(e)
+        raise e
     finally:
         if temp_template is None:
             raise Exception(f"Failed to add variables values to template {info.template_name}")
