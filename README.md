@@ -26,7 +26,7 @@ To see swagger documentation go to `http://localhost:8000/docs` once the contain
 
 ### Example requests
 
-- Word tempalte example
+- Word template example
 ```json
 // POST http://localhost:8000/api/v1/word
 
@@ -54,7 +54,7 @@ To see swagger documentation go to `http://localhost:8000/docs` once the contain
 }
 ```
 
-- Latex tempalte example
+- Latex template example
 ```json
 // POST http://localhost:8000/api/v1/latex
 
