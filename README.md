@@ -14,7 +14,9 @@ Create an instance of the service by choosing one of these options.
 
 Build the docker image and start the container with this command:
 
-`docker run -it --rm -p 8000:8000 pdf-generator:1.0`
+- Default host and port (**0.0.0.0** and **8000**): `docker run -it --rm -p 8000:8000 pdf-generator:1.0`
+- Custom host and port: `docker run -it --rm -p <INTERNAL_PORT>:<EXTERNAL_PORT> pdf-generator:1.0 --host <HOST> --port <INTERNAL_PORT>`
+- More customization: Search for arguments that receive this command `python -m uvicorn main:app`
 
 **Dev container (mostly for development):**
 
@@ -27,6 +29,7 @@ To see swagger documentation go to `http://localhost:8000/docs` once the contain
 ### Example requests
 
 - Word template example
+
 ```json
 // POST http://localhost:8000/api/v1/word
 
@@ -45,7 +48,7 @@ To see swagger documentation go to `http://localhost:8000/docs` once the contain
 			"name": "test_image",
 			"type": "image",
 			"value": {
-				"base64_image": "base 64 png image",
+				"base64_image": "<BASE 64 PNG IMAGE>",
 				"width": 100,
 				"height": 100
 			}
@@ -55,6 +58,7 @@ To see swagger documentation go to `http://localhost:8000/docs` once the contain
 ```
 
 - Latex template example
+
 ```json
 // POST http://localhost:8000/api/v1/latex
 
@@ -73,7 +77,7 @@ To see swagger documentation go to `http://localhost:8000/docs` once the contain
 			"name": "test_image",
 			"type": "image",
 			"value": {
-				"base64_image": "base 64 png image",
+				"base64_image": "<BASE 64 PNG IMAGE>",
 				"width": 100,
 				"height": 100
 			}
@@ -104,6 +108,7 @@ For handling templates the service uses [jinja engine](https://pypi.org/project/
 
 ### Word template requirements
 
+- The template must provide a `template.docx` file in the template's root folder.
 - The services uses [libreoffice](https://www.libreoffice.org/) and [docxtpl](https://pypi.org/project/docxtpl/) to build to pdf and replace tags.
   - Need to see the limitations of these tools when building templates.
   - For templates examples for [docxtpl](https://github.com/elapouya/python-docx-template/tree/master) see [here](https://github.com/elapouya/python-docx-template/tree/master/tests/templates)

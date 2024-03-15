@@ -10,4 +10,5 @@ RUN python -m venv .venv && .venv/bin/pip install -r requirements.txt
 # RUN python -m venv /app/.venv && source /app/.venv/bin/activate && pip install -r requirements.txt
 RUN apt install libreoffice -y
 
-CMD ["/app/.venv/bin/python", "-m", "uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
+ENTRYPOINT [ "/app/.venv/bin/python", "-m", "uvicorn", "main:app" ]
+CMD ["--host", "0.0.0.0", "--port", "8000"]
