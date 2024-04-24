@@ -36,7 +36,11 @@ class DataVariableInfo(BaseModel):
     """
     Data information. Will come as value property when type is data.
     """
+    x_axis: Optional[list[float]]
     data: list[float]
+    upper_data: Optional[list[float]]
+    control_data: Optional[list[float]]
+    lower_data: Optional[list[float]]
     title: Optional[str]
     x_label: Optional[str]
     y_label: Optional[str]

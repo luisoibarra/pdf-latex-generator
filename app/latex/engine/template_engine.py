@@ -23,14 +23,30 @@ def handle_data_variables(variables: list[CompileVariableInfo]) -> list[CompileV
     for var in [x for x in variables if x.type == DATA_VARIABLE_TYPE]:
         if isinstance(var.value, DataVariableInfo):
             data_var = var.value
-            plt.plot(data_var.data)
+            if not data_var.x_axis:
+                data_var.x_axis = [i for i in range(len(data_var.data))]
+            data_to_plot = [x for x in [data_var.x_axis, data_var.data] if x]
+            colors = [(0.101, 0.451, 0.91, 1)]
+            facecolor_lightgray = (0.5, 0.5, 0.5, 0.2)
+            if data_var.lower_data:
+                plt.fill_between(data_var.x_axis, data_var.lower_data, data_var.data, facecolor=facecolor_lightgray)
+            if data_var.upper_data:
+                plt.fill_between(data_var.x_axis, data_var.data, data_var.upper_data, facecolor=facecolor_lightgray)
+            if data_var.control_data:
+                plt.plot(data_to_plot[0], data_var.control_data, color=(0, 0, 0, 1))
+            for data, color in zip(data_to_plot[1:], colors):
+                plt.plot(data_to_plot[0], data, color=color)
+                plt.scatter(data_to_plot[0], data, color=color)
             if data_var.x_label:
                 plt.xlabel(data_var.x_label)
+            # plt.xticks(color=facecolor_lightgray)
             if data_var.y_label:
                 plt.ylabel(data_var.y_label)
+            # plt.yticks(color=facecolor_lightgray)
             if data_var.title:
                 plt.title(data_var.title)
-            
+            plt.grid()
+
             bio = BytesIO()
             plt.savefig(bio, format="png")
             bio.seek(0)
