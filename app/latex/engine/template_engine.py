@@ -25,18 +25,17 @@ def handle_data_variables(variables: list[CompileVariableInfo]) -> list[CompileV
             data_var = var.value
             if not data_var.x_axis:
                 data_var.x_axis = [i for i in range(len(data_var.data))]
-            data_to_plot = [x for x in [data_var.x_axis, data_var.data] if x]
-            colors = [(0.101, 0.451, 0.91, 1)]
             facecolor_lightgray = (0.5, 0.5, 0.5, 0.2)
             if data_var.lower_data:
-                plt.fill_between(data_var.x_axis, data_var.lower_data, data_var.data, facecolor=facecolor_lightgray)
+                plt.fill_between(data_var.x_axis, data_var.lower_data, data_var.data[-1].data, facecolor=facecolor_lightgray)
             if data_var.upper_data:
-                plt.fill_between(data_var.x_axis, data_var.data, data_var.upper_data, facecolor=facecolor_lightgray)
-            if data_var.control_data:
-                plt.plot(data_to_plot[0], data_var.control_data, color=(0, 0, 0, 1))
-            for data, color in zip(data_to_plot[1:], colors):
-                plt.plot(data_to_plot[0], data, color=color)
-                plt.scatter(data_to_plot[0], data, color=color)
+                plt.fill_between(data_var.x_axis, data_var.data[-1].data, data_var.upper_data, facecolor=facecolor_lightgray)
+            for info in data_var.data:
+                plt.plot(data_var.x_axis, info.data, color=info.color, linestyle=info.line_style)
+                if info.scatter:
+                    plt.scatter(data_var.x_axis, info.data, color=info.color)
+                if info.end_label:
+                    plt.text(data_var.x_axis[-1], info.data[-1], info.end_label)
             if data_var.x_label:
                 plt.xlabel(data_var.x_label)
             # plt.xticks(color=facecolor_lightgray)

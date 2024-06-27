@@ -32,14 +32,24 @@ class ImageVariableInfo(BaseModel):
     width: Optional[float]
     height: Optional[float]
 
+class CurveInfo(BaseModel):
+    """
+    Curve information.
+    """
+    name: Optional[str]
+    end_label: Optional[str]
+    line_style: Optional[str]
+    scatter: bool
+    color: list[float]
+    data: list[float]
+
 class DataVariableInfo(BaseModel):
     """
     Data information. Will come as value property when type is data.
     """
     x_axis: Optional[list[float]]
-    data: list[float]
+    data: list[CurveInfo]
     upper_data: Optional[list[float]]
-    control_data: Optional[list[float]]
     lower_data: Optional[list[float]]
     title: Optional[str]
     x_label: Optional[str]
