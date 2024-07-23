@@ -5,7 +5,7 @@ COPY app /app
 WORKDIR /app
 
 RUN apt update
-RUN apt install python3.11-venv -y
+RUN apt install python3-venv -y
 RUN python -m venv .venv && .venv/bin/pip install -r requirements.txt
 # RUN python -m venv /app/.venv && source /app/.venv/bin/activate && pip install -r requirements.txt
 RUN apt install libreoffice -y
