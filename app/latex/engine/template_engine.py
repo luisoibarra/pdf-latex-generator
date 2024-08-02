@@ -34,8 +34,11 @@ def handle_data_variables(variables: list[CompileVariableInfo]) -> list[CompileV
                 if data_var.upper_data:
                     plt.fill_between(data_var.x_axis, data_var.data[-1].data, data_var.upper_data, facecolor=facecolor_lightgray)
             for info in data_var.data:
-                x_axis = data_var.x_axis[:min(len(data_var.x_axis), len(info.data))]
-                data = info.data[:min(len(data_var.x_axis), len(info.data))]
+                if info.x_data:
+                    x_axis = info.x_data[:min(len(info.x_data), len(info.data))]
+                else:
+                    x_axis = data_var.x_axis[:min(len(data_var.x_axis), len(info.data))]
+                data = info.data[:min(len(x_axis), len(info.data))]
                 plt.plot(x_axis, data, color=info.color, linestyle=info.line_style)
                 if info.scatter:
                     plt.scatter(x_axis, data, color=info.color)

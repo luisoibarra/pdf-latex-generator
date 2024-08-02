@@ -42,6 +42,7 @@ class CurveInfo(BaseModel):
     scatter: bool
     color: list[float]
     data: list[float]
+    x_data: Optional[list[float]]
 
 class DataVariableInfo(BaseModel):
     """
